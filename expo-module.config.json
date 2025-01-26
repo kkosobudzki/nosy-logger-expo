@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["ExpoNosyLoggerModule"]
+  },
+  "android": {
+    "modules": ["dev.nosytools.rnlogger.expo.ExpoNosyLoggerModule"]
+  }
+}

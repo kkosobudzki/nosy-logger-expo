@@ -1,0 +1,41 @@
+{
+  "name": "@nosytools/logger-expo",
+  "version": "1.0.0",
+  "description": "Keeps your logs encrypted and secured",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "logger",
+    "encryption"
+  ],
+  "repository": "https://github.com/kkosobudzki/nosy-logger-expo",
+  "bugs": {
+    "url": "https://github.com/kkosobudzki/nosy-logger-expo/issues"
+  },
+  "author": "Krzysztof Kosobudzki <krzysztof.kosobudzki@gmail.com> (kkosobudzki)",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/kkosobudzki/nosy-logger-expo#readme",
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "expo": "~52.0.0",
+    "expo-module-scripts": "^4.0.3",
+    "react-native": "0.76.0"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "packageManager": "yarn@4.6.0"
+}

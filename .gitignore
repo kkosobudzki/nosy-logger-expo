@@ -1,0 +1,8 @@
+# yarn
+.yarn
+
+# node
+node_modules
+
+# expo
+build
