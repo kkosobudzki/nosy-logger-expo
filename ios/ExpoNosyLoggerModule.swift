@@ -7,34 +7,50 @@ public class ExpoNosyLoggerModule: Module {
         case apiKeyNotSet
     }
 
-    private let logger: NosyLogger = {
-        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "NOSY_LOGGER_API_KEY") else {
-            throw ValidationError.apiKeyNotSet
+    private let logger: NosyLogger? = {
+        if let apiKey = Bundle.main.object(forInfoDictionaryKey: "NOSY_LOGGER_API_KEY") as? String {
+            let _logger = NosyLogger()
+            _logger.start(apiKey: apiKey)
+
+            return _logger
         }
 
-        let _logger = NosyLogger()
-        _logger.start(apiKey: apiKey)
-
-        return _logger
+        return nil
     }()
 
     public func definition() -> ModuleDefinition {
         Name("ExpoNosyLogger")
 
         Function("debug") { (message: String) -> Void in
-            logger.debug(message)
+            if let safe = logger {
+                safe.debug(message)
+            } else {
+                throw ValidationError.apiKeyNotSet
+            }
         }
 
         Function("info") { (message: String) -> Void in
-            logger.info(message)
+            if let safe = logger {
+                safe.info(message)
+            } else {
+                throw ValidationError.apiKeyNotSet
+            }
         }
 
         Function("warning") { (message: String) -> Void in
-            logger.warning(message)
+            if let safe = logger {
+                safe.warning(message)
+            } else {
+                throw ValidationError.apiKeyNotSet
+            }
         }
 
         Function("error") { (message: String) -> Void in
-            logger.error(message)
+            if let safe = logger {
+                safe.error(message)
+            } else {
+                throw ValidationError.apiKeyNotSet
+            }
         }
     }
 }
