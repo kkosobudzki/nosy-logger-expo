@@ -3,14 +3,22 @@ import NosyLogger
 
 public class ExpoNosyLoggerModule: Module {
 
+    enum ValidationError: Error {
+        case apiKeyNotSet
+    }
+
     private let logger = NosyLogger()
+
+    init() {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "NOSY_LOGGER_API_KEY") else {
+            throw ValidationError.apiKeyNotSet
+        }
+
+        logger.init(apiKey: apiKey)
+    }
 
     public func definition() -> ModuleDefinition {
         Name("ExpoNosyLogger")
-
-        Function("init") { (apiKey: String) -> Void in
-            logger.start(apiKey: apiKey)
-        }
 
         Function("debug") { (message: String) -> Void in
             logger.debug(message)
