@@ -7,15 +7,16 @@ public class ExpoNosyLoggerModule: Module {
         case apiKeyNotSet
     }
 
-    private let logger = NosyLogger()
-
-    init() {
+    private let logger: NosyLogger = {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "NOSY_LOGGER_API_KEY") else {
             throw ValidationError.apiKeyNotSet
         }
 
-        logger.init(apiKey: apiKey)
-    }
+        let _logger = NosyLogger()
+        _logger.start(apiKey: apiKey)
+
+        return _logger
+    }()
 
     public func definition() -> ModuleDefinition {
         Name("ExpoNosyLogger")
