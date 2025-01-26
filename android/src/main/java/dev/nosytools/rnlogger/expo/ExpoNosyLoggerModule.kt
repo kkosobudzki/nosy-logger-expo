@@ -1,5 +1,6 @@
 package dev.nosytools.rnlogger.expo
 
+import android.content.pm.PackageManager
 import dev.nosytools.logger.Logger
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
@@ -16,10 +17,13 @@ class ExpoNosyLoggerModule : Module() {
                         PackageManager.GET_META_DATA
                 )
 
-        return applicationInfo.metaData.getString("NOSY_LOGGER_API_KEY")
+        applicationInfo.metaData.getString("NOSY_LOGGER_API_KEY")
+                ?: throw IllegalStateException(
+                        "Api Key was not found - set it via plugin configuration"
+                )
     }
 
-    private val logger by lazy { Logger(context).run { init(apiKey) } }
+    private val logger by lazy { Logger(context).apply { init(apiKey) } }
 
     override fun definition() = ModuleDefinition {
         Name("ExpoNosyLogger")
