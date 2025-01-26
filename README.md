@@ -2,16 +2,28 @@
 
 ## Installation
 
+### 1. NPM dependency
+
 ```sh
 npx expo install @nosytools/logger-expo
+```
+
+### 2. Module configuration
+
+Add following line to your `app.json` (`expo` > `plugins`)
+```json
+[
+  "@nosytools/logger-expo",
+  {
+    "apiKey": "<your api key>"
+  }
+]
 ```
 
 ## Usage
 
 ```js
-import { init, info, debug, warning, error } from '@nosytools/logger-mobile';
-
-init('api key for your project environment');
+import { info, debug, warning, error } from '@nosytools/logger-mobile';
 
 // TODO update example with component
 
