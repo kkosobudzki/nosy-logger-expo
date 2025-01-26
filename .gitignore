@@ -4,9 +4,6 @@
 # node
 node_modules
 
-# expo
-build
-
 # android
 android/.gradle
 android/.idea
