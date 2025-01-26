@@ -43,3 +43,7 @@ android {
     abortOnError false
   }
 }
+
+dependencies {
+    implementation "dev.nosytools:logger:2.0.3"
+}
