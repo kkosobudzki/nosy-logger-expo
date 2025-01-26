@@ -1,11 +1,18 @@
-import { NativeModule, requireNativeModule } from "expo";
+import ExpoNosyLoggerModule from "./ExpoNosyLoggerModule";
 
-declare class ExpoNosyLoggerModule extends NativeModule {
-  init(apiKey: string): void; // FIXME: use configuration https://docs.expo.dev/modules/config-plugin-and-native-module-tutorial/
-  debug(message: string): void;
-  info(message: string): void;
-  warning(message: string): void;
-  error(message: string): void;
+export function info(message: string) {
+  return ExpoNosyLoggerModule.info(message);
 }
 
-export default requireNativeModule<ExpoNosyLoggerModule>("ExpoNosyLogger");
+export function debug(message: string) {
+  return ExpoNosyLoggerModule.debug(message);
+}
+
+export function warning(message: string) {
+  return ExpoNosyLoggerModule.warning(message);
+}
+
+// FIXME: or actually an error
+export function error(message: string) {
+  return ExpoNosyLoggerModule.error(message);
+}
