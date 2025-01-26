@@ -24,8 +24,6 @@ class ExpoNosyLoggerModule : Module() {
     override fun definition() = ModuleDefinition {
         Name("ExpoNosyLogger")
 
-        Function("init") { apiKey: String -> logger.init(apiKey) }
-
         Function("debug") { message: String -> logger.debug(message) }
 
         Function("info") { message: String -> logger.info(message) }
